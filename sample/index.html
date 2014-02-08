@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ja">
+	<head>
+		<meta charset="UTF-8">
+		<title>jQuery.formval.js</title>
+	</head>
+	<body>
+		<p>
+			<button id="getall">Get all: <code>$form.val()</code></button>
+			<button id="setall">Set all: <code>$form.val(values)</code></button>
+			<button id="getone">Get one: <code>$form.val(name)</code></button>
+			<button id="setone">Set one: <code>$form.val(name, value)</code></button>
+		</p>
+		<form id="the-form">
+			<button type="reset">Reset</button><br />
+			<label>Name: <input type="text" name="name" /></label><br />
+			<label>Age: <input type="number" name="age" /></label><br />
+			Language:
+			<label><input type="checkbox" name="language" value="en" /> English</label>
+			<label><input type="checkbox" name="language" value="ja" /> Japanese</label><br />
+			Sex:
+			<label><input type="radio" name="sex" value="male" /> Male</label>
+			<label><input type="radio" name="sex" value="female" /> Female</label>
+			<label><input type="radio" name="sex" value="other" /> Other</label><br />
+			<label>Country: <select name="country">
+				<option value="us">U.S.</option>
+				<option value="jp">Japan</option>
+				<option value="other">(Others)</option>
+			</select></label><br />
+			<label>Comment: <textarea name="comment"></textarea></label><br />
+		</form>
+		<script src="jquery.js"></script>
+		<script src="../jquery.formval.js"></script>
+		<script>
+(function() {
+	var $form = $('#the-form');
+
+	$('#getall').click(function(event) {
+		var values = $form.val();
+		console.log(values);
+		alert('Check it out in the console!');
+	});
+
+	$('#setall').click(function(event) {
+		var values = {
+			name:     'Takanashi Ginpei',
+			age:      30,
+			language: ['en', 'ja'],
+			sex:      'male',
+			country:  'jp',
+			comment:  'Hello world!\nThis is Ginpei speaking.'
+		};
+		$form.val(values);
+	});
+
+	$('#getone').click(function(event) {
+		var name = $form.val('name');
+		alert('Name is: ' + name);
+	});
+
+	$('#setone').click(function(event) {
+		var name = window.prompt('Input name', $form.val('name'));
+		$form.val('name', name);
+	});
+})();
+		</script>
+	</body>
+</html>
