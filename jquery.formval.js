@@ -1,3 +1,12 @@
+/*!
+ * jQuery.formval.js
+ * https://github.com/ginpei/jquery.formval.js
+ *
+ * Released under The MIT License
+ * http://opensource.org/licenses/MIT
+ *
+ * By Takanashi Ginpei
+ */
 ;(function($) {
 	var val = $.fn.val;
 	$.fn.val = function(arg0, arg1) {
