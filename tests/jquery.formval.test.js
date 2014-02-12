@@ -123,6 +123,11 @@
 		equal(g_$form.find('.radio').filter(':checked').val(), 'A');
 	});
 
+	test('unsets radio if specified value is not found', function() {
+		g_$form.val('radio', 'C');
+		equal(g_$form.find('.radio').filter(':checked').val(), null);
+	});
+
 	test('sets select value', function() {
 		g_$form.val('select', 'B');
 		equal(g_$form.find('.select').val(), 'B');

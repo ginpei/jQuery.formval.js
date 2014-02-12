@@ -71,7 +71,7 @@
 				if ($target.length) {
 					$target.prop('checked', true);
 				}
-				// uncheck all if not matched  // TODO: test
+				// uncheck all if not matched
 				else {
 					$input.prop('checked', false);
 				}
