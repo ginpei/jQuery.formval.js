@@ -72,9 +72,23 @@
 		equal(g_$form.val('text'), 'text');
 	});
 
+	test('gets empty text value', function() {
+		g_$form.find('.text').val('text');
+		equal(g_$form.val('text'), 'text');
+		g_$form.find('.text').val('');
+		equal(g_$form.val('text'), '');
+	});
+
 	test('gets checkbox values', function() {
 		g_$form.find('.checkbox').prop('checked', true);
 		deepEqual(g_$form.val('checkbox'), ['A','B']);
+	});
+
+	test('gets empty checkbox values', function() {
+		g_$form.find('.checkbox').prop('checked', true);
+		deepEqual(g_$form.val('checkbox'), ['A','B']);
+		g_$form.find('.checkbox').prop('checked', false);
+		deepEqual(g_$form.val('checkbox'), []);
 	});
 
 	test('gets radio value', function() {
@@ -82,9 +96,23 @@
 		equal(g_$form.val('radio'), 'A');
 	});
 
+	test('gets empty radio value', function() {
+		g_$form.find('.radio').filter('[value=A]').prop('checked', true);
+		equal(g_$form.val('radio'), 'A');
+		g_$form.find('.radio').prop('checked', false);
+		equal(g_$form.val('radio'), null);
+	});
+
 	test('gets select value', function() {
 		g_$form.find('.select').val('B');
 		equal(g_$form.val('select'), 'B');
+	});
+
+	test('gets empty select value', function() {
+		g_$form.find('.select').val('B');
+		equal(g_$form.val('select'), 'B');
+		g_$form.find('.select').prop('selectedIndex', -1);
+		equal(g_$form.val('select'), null);
 	});
 
 	test('gets multi-select value', function() {
@@ -93,9 +121,25 @@
 		deepEqual(g_$form.val('multi-select'), ['A', 'B']);
 	});
 
+	test('gets empty multi-select value', function() {
+		g_$form.find('.multi-select').children('[value=A]').prop('selected', true);
+		g_$form.find('.multi-select').children('[value=B]').prop('selected', true);
+		deepEqual(g_$form.val('multi-select'), ['A', 'B']);
+		g_$form.find('.multi-select').children('[value=A]').prop('selected', false);
+		g_$form.find('.multi-select').children('[value=B]').prop('selected', false);
+		deepEqual(g_$form.val('multi-select'), []);
+	});
+
 	test('gets textarea value', function() {
 		g_$form.find('.textarea').val('textarea');
 		equal(g_$form.val('textarea'), 'textarea');
+	});
+
+	test('gets empty textarea value', function() {
+		g_$form.find('.textarea').val('textarea');
+		equal(g_$form.val('textarea'), 'textarea');
+		g_$form.find('.textarea').val('');
+		equal(g_$form.val('textarea'), '');
 	});
 
 	// ----------------------------------------------------------------

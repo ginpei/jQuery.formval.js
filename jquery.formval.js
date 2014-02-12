@@ -40,7 +40,18 @@
 					});
 				}
 				else if (type === 'radio') {
-					return $input.filter(':checked').val();
+					return $input.filter(':checked').val() || null;
+				}
+				else if ($input.prop('tagName') === 'SELECT') {
+					if ($input.attr('multiple')) {
+						return $input.val() || [];
+					}
+					if ($input.prop('selectedIndex') < 0) {
+						return null;
+					}
+					else {
+						return $input.val();
+					}
 				}
 				else {
 					return $input.val();
