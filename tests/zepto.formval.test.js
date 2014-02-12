@@ -1,5 +1,5 @@
-;(function(jQuery) {
+;(function($) {
 	test('Hello!', function() {
 		ok($, '$');
 	});
-})(window.jQuery);
+})(window.Zepto);
