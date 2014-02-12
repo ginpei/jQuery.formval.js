@@ -57,14 +57,32 @@
 		else {
 			var $input = $form.find('[name='+arg0+']');
 			var type = $input.prop('type');
-			if (type === 'radio') {
+			if (type === 'checkbox') {
+				// uncheck the other
+				$input.prop('checked', false);
+
+				// TODO: support one string value
+				for (var i=0, l=arg1.length; i<l; i++) {
+					$input.filter('[value='+arg1[i]+']').prop('checked', true);
+				}
+			}
+			else if (type === 'radio') {
 				var $target = $input.filter('[value='+arg1+']');
 				if ($target.length) {
 					$target.prop('checked', true);
 				}
-				// uncheck all if not matched
+				// uncheck all if not matched  // TODO: test
 				else {
 					$input.prop('checked', false);
+				}
+			}
+			else if ($input.prop('tagName') === 'SELECT' && $input.attr('multiple')) {
+				// uncheck the other options
+				$input.children().prop('selected', false);
+
+				// TODO: support one string value
+				for (var i=0, l=arg1.length; i<l; i++) {
+					$input.children('[value='+arg1[i]+']').prop('selected', true);
 				}
 			}
 			else {

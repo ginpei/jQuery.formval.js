@@ -16,7 +16,8 @@
 		g_$form.find('.checkbox').prop('checked', true);
 		g_$form.find('.radio').filter('[value=A]').prop('checked', true);
 		g_$form.find('.select').val('B');
-		g_$form.find('.multi-select').val(['A','B']);
+		g_$form.find('.multi-select').children('[value=A]').prop('selected', true);
+		g_$form.find('.multi-select').children('[value=B]').prop('selected', true);
 		g_$form.find('.textarea').val('textarea');
 		deepEqual(g_$form.val(), {
 			text:     'text',
@@ -87,7 +88,8 @@
 	});
 
 	test('gets multi-select value', function() {
-		g_$form.find('.multi-select').val(['A', 'B']);
+		g_$form.find('.multi-select').children('[value=A]').prop('selected', true);
+		g_$form.find('.multi-select').children('[value=B]').prop('selected', true);
 		deepEqual(g_$form.val('multi-select'), ['A', 'B']);
 	});
 
@@ -129,6 +131,13 @@
 	test('sets multi-select value', function() {
 		g_$form.val('multi-select', ['A', 'B']);
 		deepEqual(g_$form.find('.multi-select').val(), ['A', 'B']);
+	});
+
+	test('unsets multi-select value that not specified', function() {
+		g_$form.find('.multi-select').children('[value=A]').prop('selected', true);
+		g_$form.find('.multi-select').children('[value=B]').prop('selected', false);
+		g_$form.val('multi-select', ['B']);
+		deepEqual(g_$form.find('.multi-select').val(), ['B']);
 	});
 
 	test('sets textarea value', function() {
