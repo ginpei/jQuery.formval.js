@@ -150,4 +150,4 @@
 		equal(g_$form.find('.textarea').val(), 'textarea');
 	});
 
-})(window.jQuery);
+})(window.$);
