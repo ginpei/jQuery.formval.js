@@ -162,6 +162,15 @@
 		equal(g_$form.find('.checkbox').filter(':checked').length, 2);
 	});
 
+	test('sets checkbox values by a string', function() {
+		g_$form.find('.checkbox').eq(0).attr('value', 'A');
+		g_$form.find('.checkbox').eq(1).attr('value', 'AB');
+		g_$form.val('checkbox', 'AB');
+		equal(g_$form.find('.checkbox').filter(':checked').length, 1);
+		ok(!g_$form.find('.checkbox').eq(0).prop('checked'));
+		ok(g_$form.find('.checkbox').eq(1).prop('checked'));
+	});
+
 	test('sets radio value', function() {
 		g_$form.val('radio', 'A');
 		equal(g_$form.find('.radio').filter(':checked').val(), 'A');

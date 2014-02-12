@@ -72,9 +72,13 @@
 				// uncheck the other
 				$input.prop('checked', false);
 
-				// TODO: support one string value
-				for (var i=0, l=arg1.length; i<l; i++) {
-					$input.filter('[value='+arg1[i]+']').prop('checked', true);
+				if (typeof arg1 === 'string') {
+					$input.filter('[value='+arg1+']').prop('checked', true);
+				}
+				else {
+					for (var i=0, l=arg1.length; i<l; i++) {
+						$input.filter('[value='+arg1[i]+']').prop('checked', true);
+					}
 				}
 			}
 			else if (type === 'radio') {
