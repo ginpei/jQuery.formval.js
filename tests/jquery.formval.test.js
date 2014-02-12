@@ -191,6 +191,13 @@
 		deepEqual(g_$form.find('.multi-select').val(), ['A', 'B']);
 	});
 
+	test('sets multi-select value by a string', function() {
+		g_$form.find('.multi-select').children().eq(0).attr('value', 'A');
+		g_$form.find('.multi-select').children().eq(1).attr('value', 'AB');
+		g_$form.val('multi-select', 'AB');
+		deepEqual(g_$form.find('.multi-select').val(), ['AB']);
+	});
+
 	test('unsets multi-select value that not specified', function() {
 		g_$form.find('.multi-select').children('[value=A]').prop('selected', true);
 		g_$form.find('.multi-select').children('[value=B]').prop('selected', false);

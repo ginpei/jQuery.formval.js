@@ -95,9 +95,13 @@
 				// uncheck the other options
 				$input.children().prop('selected', false);
 
-				// TODO: support one string value
-				for (var i=0, l=arg1.length; i<l; i++) {
-					$input.children('[value='+arg1[i]+']').prop('selected', true);
+				if (typeof arg1 === 'string') {
+					$input.children('[value='+arg1+']').prop('selected', true);
+				}
+				else {
+					for (var i=0, l=arg1.length; i<l; i++) {
+						$input.children('[value='+arg1[i]+']').prop('selected', true);
+					}
 				}
 			}
 			else {
